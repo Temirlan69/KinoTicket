@@ -1,6 +1,8 @@
 const express = require("express");
+const ejs = require("ejs");
 const app = express();
 const port = 3000;
+app.set("views engine", "ejs");
 app.use(express.static("assets"));
 app.use("/", require("./routes/root"));
 app.use("/about", require("./routes/about"));

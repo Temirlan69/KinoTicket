@@ -3,6 +3,8 @@ const router = express.Router();
 const path = require("path");
 router
     .route("/")
-    .get((req, res) => res.sendFile(path.resolve('assets/contact.html')))
+    .get((req, res) => {
+        res.render('contact.ejs');
+    })
 
 module.exports = router;
