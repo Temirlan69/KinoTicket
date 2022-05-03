@@ -4,7 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+<<<<<<< HEAD
     "dev": "n  ver.js",
+=======
+    "dev": "nodemon server.js",
+>>>>>>> origin/master
     "start": "node server.js"
   },
   "repository": {
@@ -19,8 +23,12 @@
   "homepage": "https://github.com/Temirlan69/kinoticket#readme",
   "dependencies": {
     "ejs": "^3.1.7",
+<<<<<<< HEAD
     "express": "^4.18.1",
     "mongoose": "^6.3.2",
+=======
+    "express": "^4.17.3",
+>>>>>>> origin/master
     "nodemon": "^2.0.15"
   }
 }
