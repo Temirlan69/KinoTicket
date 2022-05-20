@@ -11,6 +11,7 @@ app.use("/about", require("./routes/about"));
 app.use("/genre", require("./routes/genre"));
 app.use("/index", require("./routes/index"));
 app.use("/contact",require("./routes/contact"));
+app.use("/booking",require("./routes/booking"));
 let port = process.env.PORT || 8000;
 if (port == null || port == "") {
     port = 8000;
@@ -22,6 +23,7 @@ const dbConfig = require('./config/data.config');
 const mongoose = require('mongoose');
 const {router} = require("express/lib/application");
 const {destroy, findAll, findOne, create} = require("./controller/authControlle");
+
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
     useNewUrlParser: true

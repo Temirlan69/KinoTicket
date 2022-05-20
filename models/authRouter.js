@@ -5,10 +5,10 @@ let schema = new mongoose.Schema({
         required:true,
         unique:true
     },
-    nickName:{
-        type:String,
-        default:''
-    },
+    // nickName:{
+    //     type:String,
+    //     default:''
+    // },
     password:{type:String, required:true},
     passwordAgain:{type:String, required:true},
 });

@@ -1,28 +1,30 @@
-const UserModel = require('../models/authRouter')
+const BookModel = require('../models/booking')
 // Create and Save a new user
 exports.create = async (req, res) => {
-    if (!req.body.email && !req.body.password && !req.body.passwordAgain) {
+    if (!req.body.author && !req.body.name) {
         res.status(400).render('index', {mydata: "Content can not be empty!"})
     }
 
-    const user = new UserModel({
-        email: req.body.email,
-        password: req.body.password,
-        passwordAgain: req.body.passwordAgain,
+    const book = new BookModel({
+        author: req.body.author,
+        name: req.body.name,
+        nickname: req.body.nickname,
+        number: req.body.number,
 
     });
 
-    await user.save()
-        .then(data => {console.log(data)})
-    //}).catch(err => {
-
-    //});
-    res.redirect('/')
+    await book.save()
+        .then(() => {
+            res.redirect('/')
+        })
+    .catch(err => {
+        console.log(err)
+});
 };
 // Retrieve all users from the database.
 exports.findAll = async (req, res) => {
     try {
-        const user = await UserModel.find();
+        const user = await BookModel.find();
         res.status(200).render('index', {mydata: user})
     } catch(error) {
         res.status(404).render('index', {mydata: error.message})
@@ -32,8 +34,8 @@ exports.findAll = async (req, res) => {
 exports.findOne = async (req, res) => {
     try {
         const user = await UserModel.findOne({email: req.query.email}).exec(); //change params to query
-        res.status(200).render('index', {mydata: "user :"+ user.password +" "
-                + user.passwordAgain +" "+ user.email
+        res.status(200).render('index', {mydata: "user :"+ user.name +" "+user.nickname +" "
+                + user.number +" "+ user.email
         })
     } catch(error) {
         res.status(404).render('index', {mydata: error.message})
@@ -70,7 +72,7 @@ exports.destroy = async (req, res) => {
             res.status(404).render('index', {mydata: "User not found"}).redirect('/')
 
         } else {
-            res.render('index', {mydata: "user "+data.password+" deleted succesfully!"})
+            res.render('index', {mydata: "user "+data.nickname+" deleted succesfully!"})
         }
     }).catch(err => {
         res.status(500).render('index', {mydata: err.message})
