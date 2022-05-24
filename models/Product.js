@@ -5,15 +5,15 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         unique: true,
     },
-    username: {
-        type: String,
-    },
+    // username: {
+    //     type: String,
+    // },
     title: {
         type: String,
     },
-    body: {
-        type: String,
-    },
+    // body: {
+    //     type: String,
+    // },
 });
 
 const Product = new mongoose.model('Product', ProductSchema);

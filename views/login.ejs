@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KinoTicket a Entertainment Category Bootstrap Responsive Website Template | Contact
+        :: W3layouts</title>
+    <link rel="stylesheet" href="css/signin.css">
+</head>
+<body>
+<!-- Button to open the modal -->
+<!--<button onclick="document.getElementById('id01').style.display='block'">Sign Up</button>-->
+
+<!-- The Modal (contains the Sign Up form) -->
+<div id="id01" class="modal">
+    <!--    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal"></span>-->
+    <form action="/login" method="post">
+
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="email" id="email" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" id="password" required>
+
+            <button type="submit" onclick="window.location.href='/'">Login</button>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

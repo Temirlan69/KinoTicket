@@ -1,53 +1,43 @@
 const ProductModel = require('../models/Product');
-const path = require('path');
 
-exports.post_create = async (req, res) => {
-    const image = req.files.image;
+exports.create = async (req, res) => {
 
-    if(!image.name || !req.body.title || !req.body.username || !req.body.body){
+    // console.log(req.body, )
+    if ( !req.body.title || !req.files.image) {
         res.status(400).send({message: "Content can not be empty"});
     }
+    const image = req.files.image;
 
-    UserModel.findOne({
-        username: req.body.username
-    }, (err, user) => {
-        if(user != null && err == null){
-            const imageName = req.body.username + new Date().getTime().toString() + image.name;
+    const imageName = new Date().getTime().toString() + image.name;
 
-            const product = new ProductModel({
-                image: imageName,
-                username: req.body.username,
-                title: req.body.title,
-                body: req.body.body,
-            });
+    const product = new ProductModel({
+        image: imageName,
+        // username: req.body.username,
+        title: req.body.title,
+        // body: req.body.body,
 
-            // Нужно как нибудь сделать название каждого изображения уникальным.
-            product.save()
-                .then((product) => {
-                    console.log('The product', product.title, 'created');
-                    image.mv('./public/img/' + imageName);
-                }).catch((err) => {
-                console.log('Something went wrong.', err);
-                res.send({message: "Content can not be empty"});
-            });
+    });
 
-            res.redirect('/product/create');
-        }else {
-            console.log("User not founded");
-            res.send({message: "User not founded"});
-        }
-    })
 
-};
+    await product.save()
+        .then(() => {
+            console.log(product);
+            image.mv('./assets/img/' + imageName);
+            res.redirect('/');
+        })
+        .catch(err => {
+            console.log(err)
+        });
+}
 
-exports.get_create = async (req, res)=>{
-    res.render('product/create');
+exports.create_form = async (req, res)=>{
+    res.render('create');
 };
 
 exports.get_all = async (req, res)=>{
     ProductModel.find({}, (err, products)=>{
         console.log(err, products);
-        res.render('product/viewall', {products});
+        res.render('viewall', {products});
     });
 };
 
@@ -56,6 +46,6 @@ exports.get_one = async (req, res)=>{
         username: req.params.username
     }, (err, products)=>{
         console.log(err, products);
-        res.render('product/viewall', {products});
+        res.render('views/viewall', {products});
     });
 };

@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
 
     await book.save()
         .then(() => {
-            res.redirect('/')
+            res.render('after')
         })
     .catch(err => {
         console.log(err)
@@ -24,9 +24,11 @@ exports.create = async (req, res) => {
 // Retrieve all users from the database.
 exports.findAll = async (req, res) => {
     try {
-        const user = await BookModel.find();
-        res.status(200).render('index', {mydata: user})
+        const book = await BookModel.find({});
+        console.log("Working")
+        res.status(200).render('index', {mydata: book})
     } catch(error) {
+        console.log("Working")
         res.status(404).render('index', {mydata: error.message})
     }
 };

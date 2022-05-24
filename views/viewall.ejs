@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<main>
+    <div class="container" style="text-align: center;">
+        <% for(let i = 0; i < products.length; i++){ %>
+            <div class="card mx-auto" style="width: 18rem;" >
+                <img class="card-img-top" src="<%= '/img/' + products[i].image %>" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%="'s: " + products[i].title %>
+                    </h5>
+<!--                    <a href="#" class="btn btn-primary">Add to cart</a>-->
+                </div>
+            </div>
+        <% } %>
+    </div>
+</main>
+</body>
+</html>
