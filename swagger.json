@@ -1,0 +1,517 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "KinoTicket",
+    "description": "KinoTicket you can buy the ticket",
+    "contact": {
+      "name": "Temirlan & Adil",
+      "url": "https://salty-springs-41754.herokuapp.com/",
+      "email": "alex.family.2202@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "localhost:8000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User",
+      "description": "API for users in the system"
+    },
+    {
+      "name": "Movie",
+      "description": "API about movie managing"
+    },
+    {
+      "name": "Book",
+      "description": "API about book system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all users in system",
+        "operationId": "getUsersUsingGET",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To get users",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved all users",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/genre": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create a new user",
+        "description": "Create new user in system by registering",
+        "operationId": "registerUserUsingPOST",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To register for an account",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created / You have registered",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to manage the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "User authorization",
+        "description": "Authorization to enter the site",
+        "operationId": "loginUserUsingPOST",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To log in an account",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You have logged in",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to view the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Remove user from session",
+        "description": "Sign out function",
+        "operationId": "logoutUsingGET",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To log out from an account",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "You have logged out",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to manage the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/update/{email}": {
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user data",
+        "description": "Edit your personal data",
+        "operationId": "updateUserUsingPATCH",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "To update data in database by using email address",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated successfully!",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to manage the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/delete/{email}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete user",
+        "description": "Delete your account",
+        "operationId": "deleteUserUsingDELETE",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Delete user by email",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted successfully!",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to manage the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/booking": {
+      "get": {
+        "tags": [
+          "Book"
+        ],
+        "summary": "Get all books in systems",
+        "description": "Show books as one",
+        "operationId": "getBooksUsingGET",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Get all books",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Books appeared on the screen",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to manage the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/product": {
+      "post": {
+        "tags": [
+          "Movie"
+        ],
+        "summary": "Create a new movie",
+        "description": "Create movie from account page",
+        "operationId": "createMovieUsingPOST",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Create movie",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movie was created successfully!",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to manage the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/product": {
+      "get": {
+        "tags": [
+          "Movie"
+        ],
+        "summary": "Get all books in systems",
+        "description": "Show books as one",
+        "operationId": "getMoviesUsingGET",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Get all movies",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movie appeared on the screen",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to manage the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    },
+    "/booking": {
+      "post": {
+        "tags": [
+          "Book"
+        ],
+        "summary": "Create a new book",
+        "description": "Create book from account page",
+        "operationId": "createBookUsingPOST",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Create Book",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Book was created successfully!",
+            "schema": {
+              "$ref": "#/definitions/Book"
+            }
+          },
+          "401": {
+            "description": "You are not authorized to manage the resource"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          },
+          "409": {
+            "description": "Database error"
+          },
+          "500": {
+            "description": "Application failed to process the request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "email",
+        "password"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "required": true,
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string",
+          "requied": true
+        },
+        "passwordAgain": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    "Movie": {
+      "type": "object",
+      "required": [
+        "image",
+        "title"
+      ],
+      "properties": {
+        "image": {
+          "type": "String",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "String"
+        }
+      }
+    },
+    "Book": {
+      "type": "object",
+      "required": [
+        "author",
+        "name",
+        "nickname",
+        "number"
+      ],
+      "properties": {
+        "author": {
+          "type": "string",
+          "required": true,
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string",
+          "default": "empty string"
+        },
+        "nickname": {
+          "type": "string",
+          "default": "empty string"
+        },
+        "number": {
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+  }
+}
+
+

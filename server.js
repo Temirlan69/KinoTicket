@@ -5,9 +5,14 @@ let port = process.env.PORT | 8000;
 const app = express();
 const methodOverride = require('method-override')
 const expressSession = require('express-session')
+const swaggerUi = require('swagger-ui-express')
+swaggerDocument = require('./swagger.json')
+
 app.use(expressSession({
     secret: 'keyboard cat'
 }))
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 const bodyparser = require("body-parser")
 app.use(bodyparser.urlencoded({extended:true}))
